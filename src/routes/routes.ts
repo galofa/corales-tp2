@@ -6,7 +6,6 @@ import {
   updateItem,
   deleteItem,
 } from '../controllers/testController';
-
 const router = Router();
 
 router.get('/', getItems);

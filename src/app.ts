@@ -1,15 +1,17 @@
 import express from 'express';
-import itemRoutes from './routes/routes';
-import { errorHandler } from './middlewares/errorHandler';
-
+import router from './routes/routes';
+import imageRouter from './routes/cloudinaryRoutes';
+import menuRouter from './routes/menuRoute';
+import cloudinaryRouter from './routes/cloudinaryRoutes';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 // Routes
-app.use('/api/items', itemRoutes);
-
-// Global error handler (should be after routes)
-app.use(errorHandler);
+app.use('/api/items', router);
+app.use('/', menuRouter)
+app.use('/images', imageRouter)
+app.use('/cloudinary', cloudinaryRouter)
 
 export default app;
