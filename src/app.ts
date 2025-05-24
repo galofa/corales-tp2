@@ -10,7 +10,6 @@ app.use(express.urlencoded({extended:true}));
 // Routes
 app.use('/', menuRouter)
 app.use('/images', imageRouter)
-app.use('/cloudinary', uploadRouter)
-app.use('/upload', )
+app.use('/upload', uploadRouter )
 
 export default app;
