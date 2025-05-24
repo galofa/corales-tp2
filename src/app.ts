@@ -1,17 +1,16 @@
 import express from 'express';
-import router from './routes/routes';
-import imageRouter from './routes/cloudinaryRoutes';
+import imageRouter from './routes/uploadReel';
 import menuRouter from './routes/menuRoute';
-import cloudinaryRouter from './routes/cloudinaryRoutes';
+import uploadRouter from './routes/uploadReel';
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 // Routes
-app.use('/api/items', router);
 app.use('/', menuRouter)
 app.use('/images', imageRouter)
-app.use('/cloudinary', cloudinaryRouter)
+app.use('/cloudinary', uploadRouter)
+app.use('/upload', )
 
 export default app;
