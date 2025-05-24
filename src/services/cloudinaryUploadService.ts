@@ -1,4 +1,4 @@
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary, UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -11,19 +11,34 @@ cloudinary.config({
 
 })
 
-class CloudinaryUploadService {
-    public async uploadVideo(localFilePath: string): Promise<any>{
-        try{
-            const result = await cloudinary.uploader.upload(localFilePath, {
-                resource_type: 'video',
-                foler: 'videos',
-            })
-            return result
-        }
-        catch (error){
-            console.log(`Error al subir video a Cloudinary: ${error}`)
-        }
+class CloudinaryUploadService { 
+    
+    public async uploadVideo(videoPath:string): Promise<string>{
+
+        return new Promise((resolve, reject)=>{
+            
+            cloudinary.uploader.upload(
+                videoPath,
+                {
+                  resource_type: 'video',
+                },
+                (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+                  if (error) {
+                    return reject(error);
+                  }
+                  if (!result) {
+                    return reject(new Error('No se recibió respuesta de Cloudinary'));
+                  }
+                  resolve(result.secure_url);
+                }
+              );
+              
+
+
+
+        })
     }
 }
+
 
 export default CloudinaryUploadService;
