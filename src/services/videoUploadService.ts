@@ -29,6 +29,7 @@ class LocalStorageService {
 
         return new Promise((resolve, reject)=>{
             upload(req , {} as Response, (err:any)=>{ 
+            
             //La request para obtener los datos del upload
             // {} una response mockeada
             // err 
