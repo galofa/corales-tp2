@@ -1,3 +1,6 @@
 /node_modules
 .env
 /uploads/*.mp4
+/prisma/migrations
+/prisma/dev.db
+
