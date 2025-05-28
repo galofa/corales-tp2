@@ -1,0 +1,7 @@
+model Reels {
+  id    String     @id @default(uuid())
+  caption String
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
