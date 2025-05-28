@@ -1,7 +1,7 @@
 model User {
   id    String     @id @default(uuid())
-  email String  @unique
-  name  String?
+  email String      @unique
+  name  String      @unique
   passwordHash String
 
   reels Reels[] 
