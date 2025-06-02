@@ -31,8 +31,7 @@ const handleRegister = async (req:Request, res:Response) => {
 
         res.status(201).json({
             "name": userData.name,
-            "email": userData.email,
-            "passwordHash":hashedPassword
+            "token": userData.token
         })
 
     }
@@ -56,7 +55,8 @@ const handleLogin = async (req: Request, res:Response) => {
         const login = await userService.loginUser(name, password)
 
         res.status(201).json({
-            "name":"name"
+            "name": login.name,
+            "token": login.token
         })
     }
 
