@@ -4,6 +4,7 @@ import LocalStorageService from '../services/videoUploadService';
 import MiError from '../errors/errors';
 import CloudinaryUploadService from '../services/cloudinaryUploadService';
 import InstagramUploadService from '../services/instagramUploadService';
+import { authenticateToken } from '../middleware/authMiddleware';
 
 const uploadRouter = Router();
 const localStorageService = new LocalStorageService();
@@ -41,6 +42,6 @@ const handleSubmit = async (req: Request, res: Response) =>{
   }
 }
 
-uploadRouter.post('/upload', handleSubmit)
+uploadRouter.post('/upload', authenticateToken, handleSubmit)
 
 export default uploadRouter;
