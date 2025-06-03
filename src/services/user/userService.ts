@@ -7,6 +7,19 @@ import { signJwt } from "../../utils/utils"
 
 class UserService {
 
+    private async getUserByName(name: string) {
+        const user = await db.user.findUnique({
+            where: { name }
+        });
+    
+        if (!user) {
+            throw new MiError("UserNotFound", `No se encontró un usuario con el nombre: ${name}`, 404);
+        }
+    
+        return user;
+    }
+    
+
     public async createUser(name: string, email: string, password: string): Promise<{ name: string, token: string }> {
 
         try {
@@ -70,6 +83,75 @@ class UserService {
 
         }
 
+    }
+
+    public async hasTokens(name:string): Promise<boolean> {
+        const user = await this.getUserByName(name);
+        return user.tokens > 0
+    }
+
+    public async decreaseTokens(name:string){
+        try {
+
+            const userBefore = await this.getUserByName(name);
+
+            console.log("Tokens antes: ", userBefore.tokens)
+            const hasTokens = await this.hasTokens(name)
+
+            if (!hasTokens){
+                throw new MiError("SinTokens", "El usuario no tiene tokens disponibles", 400);
+            }
+
+            const updatedUser = await db.user.update({
+                where: { name },
+                data: {
+                  tokens: {
+                    decrement: 1, 
+                  },
+                },
+              });
+            console.log("Token restado ")
+
+            const userAfter = await this.getUserByName(name);
+            console.log("User after token: ", userAfter.tokens)
+
+        }
+        
+        catch(err){
+            throw new MiError("Error", "No se pudo restar un token", 500);
+        }
+
+    }
+
+    public async addTokens(name:string, amountOfTokens:number){
+        try {
+
+            const userBefore = await this.getUserByName(name);
+            console.log("User before adding token: ", userBefore.tokens)
+
+            if (amountOfTokens < 1 ){
+                throw new MiError("Error", "Se estan agregano tokens negativos", 500);
+            }
+
+            const updatedUser = await db.user.update({
+                where: { name },
+                data: {
+                  tokens: {
+                    increment: amountOfTokens, 
+                  },
+                },
+              });
+            console.log("Token añadido ")
+            console.log("bign iga; ", updatedUser)
+            console.log("bign iga; ", updatedUser.id)
+
+            const userAfter = await this.getUserByName(name);
+            console.log("User after token: ", userAfter.tokens)
+        }
+        
+        catch(err){
+            throw new MiError("Error", "No se pudo restar un token", 500);
+        }
     }
 
 }

@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import MiError from '../errors/errors';
 import UserService from '../services/user/userService';
 import hashPassword from '../utils/utils';
+import { authenticateToken } from '../middleware/authMiddleware';
 
 const userRouter = Router()
 
@@ -47,9 +48,12 @@ const handleLogin = async (req: Request, res:Response) => {
         const name = req.body.name
         const password = req.body.password
 
+
+
         if (!name || !password) {
             
             throw new MiError("Error Campos faltantes", "Todos los campos (name , password) ", 400);
+        
         }
 
         const login = await userService.loginUser(name, password)
@@ -67,7 +71,52 @@ const handleLogin = async (req: Request, res:Response) => {
     }
 }
 
+const handleAddTokens = async(req: Request, res: Response) =>
+    {
+        
+
+    try{
+
+    
+        const userName = (req as any).user.name;
+        const amountOfTokens = req.body.amountOfTokens
+
+        console.log("amountOfTokens: ", amountOfTokens)
+
+        if (typeof amountOfTokens !== "number" || isNaN(amountOfTokens) || amountOfTokens < 1) {
+            throw new MiError(
+                "CamposInvalidos",
+                "Debes enviar amountOfTokens numérico mayor a 0 en el body",
+                400
+            );
+        }
+
+        await userService.addTokens(userName, amountOfTokens)
+        
+
+        res.status(201).json({
+            "mensaje":"Nuevos tokens agregados",
+            "name": userName,
+            "token": amountOfTokens
+        })
+            
+    }
+    catch(err)
+    {
+        if (err instanceof MiError){
+            res.status(err.estado).json({"name": err.name, "message": err.message})  
+        }
+        else{
+            res.status(500).json({"name": "Error interno", "message": "Hubo un error interno al agregar el token"})  
+        }
+    }
+    
+
+
+}
+
 userRouter.post('/register', handleRegister)
 userRouter.post('/login', handleLogin)
+userRouter.post('/add-tokens', authenticateToken, handleAddTokens)
 
 export default userRouter
