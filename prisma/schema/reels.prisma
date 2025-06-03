@@ -3,5 +3,5 @@ model Reels {
   caption String
   author User @relation(fields: [authorId], references: [id])
   authorId String
+  reelurl String
 }
-
