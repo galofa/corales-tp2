@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import MiError
  from '../errors/errors';
 const SALT_ROUNDS = 10;
+
 export async function hashPassword(plainPassword: string): Promise<string> {
   const hashed = await bcrypt.hash(plainPassword, SALT_ROUNDS);
   return hashed;

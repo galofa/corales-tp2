@@ -105,11 +105,11 @@ class UserService {
             const updatedUser = await db.user.update({
                 where: { name },
                 data: {
-                  tokens: {
+                    tokens: {
                     decrement: 1, 
-                  },
+                    },
                 },
-              });
+                });
             console.log("Token restado ")
 
             const userAfter = await this.getUserByName(name);
@@ -136,11 +136,11 @@ class UserService {
             const updatedUser = await db.user.update({
                 where: { name },
                 data: {
-                  tokens: {
+                    tokens: {
                     increment: amountOfTokens, 
-                  },
+                    },
                 },
-              });
+                });
             console.log("Token añadido ")
             console.log("bign iga; ", updatedUser)
             console.log("bign iga; ", updatedUser.id)

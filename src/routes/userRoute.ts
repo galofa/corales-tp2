@@ -109,7 +109,6 @@ const handleAddTokens = async(req: Request, res: Response) =>
 }
 
 const handleGetReels = async(req:Request, res:Response) => {
-    
     try{
         const userName = (req as any).user.name;
         const reels = await reelService.getReelsFromUser(userName)
