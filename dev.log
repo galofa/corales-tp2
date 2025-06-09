@@ -1,0 +1,45 @@
+
+> reels_publishing_typescript@1.0.0 dev
+> nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src/**/*.ts[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/server.ts`[39m
+Server running on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/server.ts`[39m
+Server running on port 3000
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `ts-node src/server.ts`[39m
+Server running on port 3000
+Tokens antes:  48
+Token restado 
+User after token:  47
+Intento 1: estado del media = IN_PROGRESS
+Intento 2: estado del media = IN_PROGRESS
+Intento 3: estado del media = FINISHED
+Detalles del reel publicado: {
+  id: '18345566098081773',
+  permalink: 'https://www.instagram.com/reel/DKqMRLWPr24/',
+  media_url: 'https://instagram.faep25-1.fna.fbcdn.net/o1/v/t16/f2/m86/AQOyyY1heHv684a5UbvfHYwROVcAmEROvY-FsMq-_TUDZmeBIaU5PiuV3hSFmwNbQdinOSV1cBxUzRlg4V36HFeeG1eE58vVEOb6A0M.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLmNsaXBzLnVua25vd24tQzMuNTQ0LmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=instagram.faep25-1.fna.fbcdn.net&edm=AEQ6tj4EAAAA&_nc_gid=WRXTbe5MiVx1NY-IDD1ivw&_nc_cat=106&_nc_oc=AdkHQEuqxVKasj9OnP2mHYom52c5HhfKhjEn0wziJ1MI00mZFR5PSfbYfkg_XDpnCjkWwS_dgClUuezsECT7UbRY&vs=3164193787063050_877633710&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9GRDRBM0IxMENENTYxMTEwMkY2RTA3NkRFQUYyMjhCMV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HR216SUI2S3ZvT0RKM2dFQUxhdC0xU1N1cllpYnFfRUFBQUYVAgLIARIAKAAYABsBiAd1c2Vfb2lsATEVAAAmnvu0k9Xvxz8VAigCQzMsF0BQCFHrhR64GBJkYXNoX2Jhc2VsaW5lXzFfdjERAHUAZeadAQA%3D&ccb=9-4&oh=00_AfO3_OdI41LNWxv-rEkcb8SNz5oBt65BWKBkyGGhfhNK3A&oe=6847E8CA&_nc_sid=1d576d',
+  timestamp: '2025-06-09T00:04:18+0000'
+}
+Reel agregado a la DB
+Cerrando Handle Submit
+Tokens antes:  47
+Token restado 
+User after token:  46
+Intento 1: estado del media = IN_PROGRESS
+Intento 2: estado del media = IN_PROGRESS
+Intento 3: estado del media = FINISHED
+Detalles del reel publicado: {
+  id: '18508786948001944',
+  permalink: 'https://www.instagram.com/reel/DKqMW_dN_Zn/',
+  media_url: 'https://instagram.faep25-1.fna.fbcdn.net/o1/v/t16/f2/m86/AQM3_QDxzAkUp8239ueduyndTUKBxuiTcONzNk5nzDPOmpciTAd6niAxe51qJAXrYQhwWbITxPok04x2SqdyQGVNRQUkXT9ia2_PW_E.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLmNsaXBzLnVua25vd24tQzMuNTQ0LmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=instagram.faep25-1.fna.fbcdn.net&edm=AEQ6tj4EAAAA&_nc_gid=dLVM-JnBTzHTuur2lIES9w&_nc_cat=106&_nc_oc=AdlCLM0fuZchOaCa9P-DS6SfmNONNGJVsjptYekeODSW76L2xUDT7TRlmNYF2yW2yfubph89x4V2acnTWKFRaduN&vs=1021830059721036_2060309922&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC85QTQ2RjFERTEwMDJFMThFNTlFRUEwQzg2RUE1ODFCOF92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRGlFSmg3ZVpCTkFlQ0lGQU1QUGJtWER2alFpYnFfRUFBQUYVAgLIARIAKAAYABsBiAd1c2Vfb2lsATEVAAAm2Neh6sCJmkAVAigCQzMsF0BQCFHrhR64GBJkYXNoX2Jhc2VsaW5lXzFfdjERAHUAZeadAQA%3D&ccb=9-4&oh=00_AfPZvyrXS2LdhmXbfRVlUzS6tfeh4h-aSO4RmvmPbNDrXA&oe=68480766&_nc_sid=1d576d',
+  timestamp: '2025-06-09T00:05:05+0000'
+}
+Reel agregado a la DB
+Cerrando Handle Submit

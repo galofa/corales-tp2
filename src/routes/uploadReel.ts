@@ -38,10 +38,9 @@ const handleSubmit = async (req: Request, res: Response) =>{
 
         const cloudinaryVideoUrl = await cloudinaryService.uploadVideo(localVideoUrl)
 
-        //const instagramReelResponse = await instagramService.uploadVideo(cloudinaryVideoUrl, caption ,igUserId, accessToken)
+        const instagramReelResponse = await instagramService.uploadVideo(cloudinaryVideoUrl, caption ,igUserId, accessToken)
 
-        const instagramReelResponse = "DEVELOPLMENT MODE NO REELS WAS UPLOADED!!!!"
-        const savedReel = await reelService.createReel(caption, userId, instagramReelResponse);
+        const savedReel = await reelService.createReel(caption, userId, instagramReelResponse.reelUrl);
 
         res.status(200).json({"instagramReelData": instagramReelResponse, "cloudinaryData": cloudinaryVideoUrl} )
         
