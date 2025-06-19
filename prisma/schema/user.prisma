@@ -6,4 +6,5 @@ model User {
   passwordHash String
 
   reels Reels[] 
+  logs     ReelsLog[]
 }

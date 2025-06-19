@@ -1,20 +1,10 @@
 model ReelsLog {
   id        String   @id @default(uuid())
-  reelId    String
+  reelName  String 
   userId    String
   status    String
-  mensaje   String? // opcional
-  createdAt DateTime @default(now())
-
-  reel      Reels    @relation(fields: [reelId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-
-model Log {
-  id        String   @id @default(uuid())
-  status    String
-  action    String
-  mensaje   String? // opcional
-  createdAt DateTime @default(now())
+  mensaje   String? 
+  insertedAt DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id])
 }
