@@ -8,3 +8,11 @@ model ReelsLog {
   
   user       User     @relation(fields: [userId], references: [id])
 }
+
+model Logs {
+  id        String   @id @default(uuid())
+  tipoLog   String
+  statusCode    Int
+  mensaje   String? 
+  insertedAt DateTime @default(now())
+}

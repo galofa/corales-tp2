@@ -32,10 +32,6 @@ class CloudinaryUploadService {
                   resolve(result.secure_url);
                 }
               );
-              
-
-
-
         })
     }
 }

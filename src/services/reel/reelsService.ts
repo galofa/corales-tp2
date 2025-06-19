@@ -15,7 +15,6 @@ class ReelService {
             return newReel;
         } catch (err: any) {
             console.error("Error al crear el reel:", err);
-
             throw new MiError("DBError", "No se pudo crear el reel", 500);
         }
     }
