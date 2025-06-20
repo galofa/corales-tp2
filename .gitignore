@@ -2,4 +2,6 @@
 .env
 /uploads/*.mp4
 /prisma/dev.db
+bd
+bd-journal
 
