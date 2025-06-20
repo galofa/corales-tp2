@@ -1,5 +1,11 @@
 # TP 2 Desarrollo de Sistemas
 
-### Alumnos
+## Integrantes
  - Pedro Villarino
  - Galo Fernandez Achille
+
+## Cómo ejecutar el código
+
+## Decisiones tomadas respecto al diseño
+
+## Cómo contribuir

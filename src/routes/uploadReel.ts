@@ -160,6 +160,7 @@ const handleSubmit = async (req: Request, res: Response) =>{
  *       500:
  *         description: Error interno del servidor
  */
+
 uploadRouter.post('/upload', authenticateToken, handleSubmit)
 
 export default uploadRouter;
