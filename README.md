@@ -34,10 +34,15 @@ npm run migrate
 ### 5. Correr la app
 
 ```bash
-npm run build
-npm start
+npm run dev
 ```
 
 ## Decisiones tomadas respecto al diseño
 
-## Cómo contribuir
+- Utilizamos cloudinary para subir los videos a un container público porque era lo más sencillo.
+
+- Usamos JWT para la autorización para que la aplicación sea más segura.
+
+- Utilizamos Swagger para que la documentación sea estandar y puedas verla desde un endpoint.
+
+
