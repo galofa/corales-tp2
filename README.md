@@ -6,6 +6,8 @@
 
 ## Cómo ejecutar el código
 
+Aclaración, solo funciona desde linux. Lo probamos en windowsn 
+
 ### 1. Instalar dependencias
 
 ```bash
@@ -19,13 +21,17 @@ cp .env.template .env
 ```
 Editar el .env con los valores reales
 
-### 3. Migrar DB de Prisma
+### 3. Generar prisma
 
+```bash
+npm run generate
+```
+### 4. Migrar la base de datos de prisma
 ```bash
 npm run migrate
 ```
 
-### 4. Correr la app
+### 5. Correr la app
 
 ```bash
 npm run build
