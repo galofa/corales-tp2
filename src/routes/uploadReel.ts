@@ -36,6 +36,7 @@ const handleSubmit = async (req: Request, res: Response) =>{
         const userHasTokens = await userService.hasTokens(userName)
         if (!userHasTokens){
             res.status(402).json({"message": "Pago necesario", "details": "El usuario no tiene tokens suficientes para subir un reel"})
+            return
         }
         
 
@@ -91,7 +92,74 @@ const handleSubmit = async (req: Request, res: Response) =>{
         console.log("Cerrando Handle Submit")
     }
 }
-
+/**
+ * @swagger
+ * /upload/upload:
+ *   post:
+ *     summary: Sube un reel a Instagram desde video local
+ *     tags:
+ *       - Upload
+ *     security:
+ *       - bearerAuth: []  # Esto indica que usa autenticación JWT (token)
+ *     parameters:
+ *       - in: header
+ *         name: instagram-access-token
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token de acceso de Instagram
+ *       - in: header
+ *         name: instagram-ig-user-id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del usuario de Instagram
+ *       - in: header
+ *         name: caption
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Texto del caption para el reel
+ *       - in: header
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nombre del reel
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               video:
+ *                 type: string
+ *                 format: binary
+ *                 description: Archivo de video a subir
+ *     responses:
+ *       200:
+ *         description: Reel subido exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 instagramReelData:
+ *                   type: object
+ *                   description: Datos de respuesta de Instagram
+ *                 cloudinaryData:
+ *                   type: string
+ *                   description: URL del video en Cloudinary
+ *       402:
+ *         description: Pago necesario (falta tokens)
+ *       403:
+ *         description: Campos faltantes en headers (caption o name)
+ *       401:
+ *         description: No autorizado / Token inválido
+ *       500:
+ *         description: Error interno del servidor
+ */
 uploadRouter.post('/upload', authenticateToken, handleSubmit)
 
 export default uploadRouter;

@@ -47,6 +47,7 @@ class UserService {
                 }
                 throw new MiError("PrismaError", `Error en la base de datos: ${err.message}`, 500);
             }
+            
 
             throw new MiError("Error Inesperado", "Error inesperado al iniciar registrar usuario", 500)
 
@@ -71,14 +72,22 @@ class UserService {
             else {
                 const samePassword = await arePasswordsEqual(password, user.passwordHash)
                 console.log("same password: ", samePassword)
-            }
 
-            const token = await signJwt(user.id,user.name);
-            return { name: user.name, token: token }
+                if (samePassword){
+                    const token = await signJwt(user.id,user.name);
+                    return { name: user.name, token: token }
+                }
+                else{
+                    throw new MiError("Credenciales inválidas", "Las credenciales de usuario son inválidas", 401)
+                }
+            }
 
         }
         catch (err: any) {
-
+            if (err instanceof MiError) {
+               throw err;
+        }
+            console.log("Err: ", err)
             throw new MiError("Error Inesperado", "Error inesperado al iniciar registrar usuario", 500)
 
         }

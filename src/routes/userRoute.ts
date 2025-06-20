@@ -54,6 +54,7 @@ const handleLogin = async (req: Request, res:Response) => {
     try {
         const name = req.body.name
         const password = req.body.password
+        
         if (!name || !password) {
             
             throw new MiError("Error Campos faltantes", "Todos los campos (name , password) ", 400);
@@ -145,6 +146,174 @@ const handleGetReels = async(req:Request, res:Response) => {
 
     }
 }
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Registro de usuario
+ *     tags:
+ *       - User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - email
+ *               - password
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: pedro
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: pedro@example.com
+ *               password:
+ *                 type: string
+ *                 example: myStrongPass123
+ *     responses:
+ *       201:
+ *         description: Usuario creado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *       400:
+ *         description: Campos faltantes o formato inválido | Email Duplicado
+ * 
+ * /auth/login:
+ *   post:
+ *     summary: Login de usuario
+ *     tags:
+ *       - User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - password
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: pedro
+ *               password:
+ *                 type: string
+ *                 example: myStrongPass123
+ *     responses:
+ *       201:
+ *         description: Login exitoso, devuelve token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *       400:
+ *         description: Campos faltantes
+ *       401:
+ *         description: Credenciales inválidas
+ *       500:
+ *         description: El usuario no se encontro en la db | Error interno
+ * 
+ * /auth/add-tokens:
+ *   post:
+ *     summary: Agrega tokens a un usuario autenticado
+ *     tags:
+ *       - User
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         description: Bearer token para autenticación
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - amountOfTokens
+ *             properties:
+ *               amountOfTokens:
+ *                 type: integer
+ *                 minimum: 1
+ *                 example: 5
+ *     responses:
+ *       201:
+ *         description: Tokens agregados exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 mensaje:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 token:
+ *                   type: integer
+ *       400:
+ *         description: Campos inválidos o amountOfTokens incorrecto
+ *       401:
+ *         description: No autorizado (token inválido o faltante)
+ *       500:
+ *         description: Error interno del servidor
+ * 
+ * /auth/mis-reels:
+ *   get:
+ *     summary: Obtiene los reels del usuario autenticado
+ *     tags:
+ *       - User
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Lista reels de usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 reels:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     description: Reel guardado
+ *       401:
+ *         description: No autorizado (token inválido o faltante)
+ *       500:
+ *         description: Error interno del servidor
+ * 
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
 
 userRouter.post('/register', handleRegister)
 userRouter.post('/login', handleLogin)
